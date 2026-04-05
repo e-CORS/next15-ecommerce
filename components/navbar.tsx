@@ -1,6 +1,8 @@
 import { ModeToggle } from "@/components/mode-toggle";
 
 import Link from "next/link";
+import { Button } from "./ui/button";
+import { SearchIcon, ShoppingCartIcon } from "lucide-react";
 
 const categories = [
   {
@@ -29,6 +31,7 @@ export default function Navbar() {
           <Link href="/" className="text-2xl font-bold">
             Store
           </Link>
+
           <nav className="hidden md:flex items-center gap-6 mt-1">
             {categories.map((category) => (
               <Link
@@ -41,12 +44,21 @@ export default function Navbar() {
             ))}
           </nav>
         </div>
-        <div>
-          <ul>
-            <li>
-              <ModeToggle />
-            </li>
-          </ul>
+
+        <div className="flex items-center gap-4">
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="/search">
+              <SearchIcon className="size-5" />
+            </Link>
+          </Button>
+
+          <Button variant="ghost" size="icon" asChild>
+            <Link href="/cart">
+              <ShoppingCartIcon className="size-5" />
+            </Link>
+          </Button>
+
+          <ModeToggle />
         </div>
       </div>
     </div>
