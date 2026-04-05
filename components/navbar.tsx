@@ -26,7 +26,7 @@ const categories = [
 export default function Navbar() {
   return (
     <div className="border-b">
-      <div className="container mx-auto flex h-16 items-center justify-between">
+      <div className="container mx-auto flex h-16 items-center justify-between border-b px-4">
         <div className="flex items-center gap-6">
           <Link href="/" className="text-2xl font-bold">
             Store
