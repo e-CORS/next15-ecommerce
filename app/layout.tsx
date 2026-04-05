@@ -55,7 +55,15 @@ export default function RootLayout({
               <Navbar />
             </header>
 
-            {children}
+            <main className="h-calc(100vh - 64px)">{children}</main>
+
+            <footer className="border-t border-dashed py-6 mt-auto">
+              <div className="container mx-auto flex items-center justify-between">
+                <p className="text-sm text-muted-foreground text-center">
+                  &copy; {new Date().getFullYear()} eCORS. All rights reserved.
+                </p>
+              </div>
+            </footer>
           </ThemeProvider>
         </body>
       </html>
