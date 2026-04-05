@@ -8,7 +8,7 @@ export default function Loading() {
     <main className="container mx-auto p-4">
       <Card className="max-w-3xl mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Skeleton className="w-full h-84 aspect-square" />
+          <Skeleton className="w-full h-48 aspect-video rounded-lg" />
           <div className="space-y-4">
             <Skeleton className="w-1/2 h-8" />
 

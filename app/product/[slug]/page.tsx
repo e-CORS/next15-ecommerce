@@ -48,7 +48,7 @@ export default async function ProductPage({
       <Card className="max-w-3xl mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           {product.image && (
-            <div className="relative rounded-lg overflow-hidden aspect-square mb-2">
+            <div className="relative rounded-lg overflow-hidden aspect-video mb-2">
               <Image
                 src={product.image}
                 alt={product.name}
