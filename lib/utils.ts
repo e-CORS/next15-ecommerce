@@ -13,3 +13,7 @@ export function formatPrice(price: number): string {
     currency,
   }).format(price);
 }
+
+export async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
