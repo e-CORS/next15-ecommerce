@@ -12,6 +12,7 @@ import {
 import { Suspense } from "react";
 import { ProductsSkeleton } from "./ProductsSkeleton";
 import { sleep } from "@/lib/utils";
+import Breadcrumbs, { BreadcrumbItem } from "@/components/breadcrumbs";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -48,10 +49,17 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
 
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      label: "Products",
+      href: "/products",
+      active: false,
+    },
+  ];
+
   return (
     <main className="container mx-auto py-4 h-full">
-      <h1 className="text-3xl font-bold mb-6">Home</h1>
-
+      <Breadcrumbs items={breadcrumbItems} />
       <Suspense key={page} fallback={<ProductsSkeleton />}>
         <Products page={page} />
       </Suspense>

@@ -2,10 +2,12 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { CardContent, Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import Breadcrumbs from "@/components/breadcrumbs";
 
 export default function Loading() {
   return (
     <main className="container mx-auto p-4">
+      <Breadcrumbs items={[]} />
       <Card className="max-w-3xl mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <Skeleton className="w-full h-full aspect-square rounded-lg" />

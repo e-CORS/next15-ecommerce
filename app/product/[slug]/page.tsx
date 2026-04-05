@@ -1,3 +1,4 @@
+import Breadcrumbs, { type BreadcrumbItem } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CardContent, Card } from "@/components/ui/card";
@@ -45,8 +46,27 @@ export default async function ProductPage({
 
   await sleep(1000);
 
+  const breadcrumbItems: BreadcrumbItem[] = [
+    {
+      label: "Products",
+      href: "/products",
+      active: false,
+    },
+    {
+      label: product.category?.name,
+      href: `/category/${product.category?.slug}`,
+      active: false,
+    },
+    {
+      label: product.name,
+      href: `/product/${product.slug}`,
+      active: true,
+    },
+  ];
+
   return (
     <main className="container mx-auto py-4">
+      <Breadcrumbs items={breadcrumbItems} />
       <Card className="max-w-3xl mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {product.image && (
