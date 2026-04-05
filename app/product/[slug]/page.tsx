@@ -5,6 +5,29 @@ import { getProductBySlug } from "@/lib/actions";
 import { formatPrice, sleep } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+
+  if (!product) {
+    return {};
+  }
+
+  return {
+    title: `${product?.name} - ${product?.category?.name}`,
+    description: product?.description,
+    images: [
+      {
+        url: product?.image,
+      },
+    ],
+  };
+}
+
 export default async function ProductPage({
   params,
 }: {
