@@ -65,7 +65,7 @@ export default async function ProductPage({
   ];
 
   return (
-    <main className="container mx-auto py-4">
+    <main className="container mx-auto py-4 px-4 sm:px-0">
       <Breadcrumbs items={breadcrumbItems} />
       <Card className="w-full mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">

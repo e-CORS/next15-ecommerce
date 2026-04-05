@@ -58,7 +58,7 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
   ];
 
   return (
-    <main className="container mx-auto py-4 h-full">
+    <main className="container mx-auto py-4 h-full px-4 sm:px-0">
       <Suspense key={page} fallback={<ProductsSkeleton />}>
         <Breadcrumbs items={breadcrumbItems} />
         <Products page={page} />
