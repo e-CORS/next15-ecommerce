@@ -6,8 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number): string {
-  const locale = process.env.CURRENT_LOCALE;
-  const currency = process.env.CURRENT_CURRENCY;
+  const locale = process.env.CURRENT_LOCALE ?? "en-ES";
+  const currency = process.env.CURRENT_CURRENCY ?? "EUR";
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
