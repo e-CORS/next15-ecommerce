@@ -9,40 +9,56 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Suspense } from "react";
+import { ProductsSkeleton } from "./ProductsSkeleton";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
-export default async function HomePage(props: { searchParams: SearchParams }) {
-  const searchParams = await props.searchParams;
+const PAGE_SIZE = 3;
 
-  const page = Number(searchParams.page) || 1;
-  const pageSize = 3;
-  const skip = (page - 1) * pageSize;
+async function Products({ page }: { page: number }) {
+  const skip = (page - 1) * PAGE_SIZE;
 
-  const [products, total] = await Promise.all([
-    prisma.product.findMany({
-      skip,
-      take: pageSize,
-      orderBy: {
-        id: "asc",
-      },
-    }),
-    prisma.product.count(),
-  ]);
-
-  const totalPages = Math.ceil(total / pageSize);
+  const products = await prisma.product.findMany({
+    skip,
+    take: PAGE_SIZE,
+    orderBy: {
+      id: "asc",
+    },
+  });
 
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
   return (
-    <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Home</h1>
+    <>
       <p className="text-gray-600 mb-4">Showing {products.length} products</p>
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
+    </>
+  );
+}
+
+export default async function HomePage(props: { searchParams: SearchParams }) {
+  const searchParams = await props.searchParams;
+
+  const page = Number(searchParams.page) || 1;
+
+  const total = await prisma.product.count();
+
+  const totalPages = Math.ceil(total / PAGE_SIZE);
+
+  return (
+    <main className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">Home</h1>
+
+      <Suspense key={page} fallback={<ProductsSkeleton />}>
+        <Products page={page} />
+      </Suspense>
+
       <Pagination className="mt-6">
         <PaginationContent>
           <PaginationItem>
