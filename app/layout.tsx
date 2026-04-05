@@ -1,8 +1,12 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
-import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/mode-toggle";
 import Link from "next/link";
+
+import "./globals.css";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
+
+import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -27,28 +31,45 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable,
-      )}
-    >
-      <body className="min-h-full flex flex-col">
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/products">Products</Link>
-          </li>
-        </ul>
-        {children}
-      </body>
-    </html>
+    <>
+      <html
+        lang="en"
+        className={cn(
+          "h-full",
+          "antialiased",
+          geistSans.variable,
+          geistMono.variable,
+          "font-sans",
+          inter.variable,
+        )}
+        suppressHydrationWarning
+      >
+        <body className="min-h-full flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ul className="flex items-center gap-4 p-2">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/products">Products</Link>
+              </li>
+              <li>
+                <Link href="/cart">Cart</Link>
+              </li>
+              <li>
+                <ModeToggle />
+              </li>
+            </ul>
+
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
   );
 }

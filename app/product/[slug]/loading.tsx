@@ -38,7 +38,7 @@ export default function Loading() {
             <Separator className="my-4" />
 
             <div>
-              <Skeleton className="w-full h-10 rounded-md" />
+              <Skeleton className="w-full h-12 rounded-md mt-2" />
             </div>
           </div>
         </CardContent>
