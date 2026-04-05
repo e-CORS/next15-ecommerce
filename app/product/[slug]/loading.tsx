@@ -8,8 +8,8 @@ export default function Loading() {
     <main className="container mx-auto p-4">
       <Card className="max-w-3xl mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Skeleton className="w-full h-86 aspect-square rounded-lg" />
-          <div className="space-y-4">
+          <Skeleton className="w-full h-full aspect-square rounded-lg" />
+          <div className="space-y-4 h-full">
             <Skeleton className="w-1/2 h-8" />
 
             <div className="flex items-center gap-2 mb-4">
@@ -33,6 +33,12 @@ export default function Loading() {
                 <Skeleton className="w-1/4 h-6" />
                 <Skeleton className="w-1/4 h-6" />
               </div>
+            </div>
+
+            <Separator className="my-4" />
+
+            <div>
+              <Skeleton className="w-full h-10 rounded-md" />
             </div>
           </div>
         </CardContent>

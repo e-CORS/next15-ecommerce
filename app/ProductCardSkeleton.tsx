@@ -5,7 +5,7 @@ export function ProductCardSkeleton() {
   return (
     <Card className="pt-0 overflow-hidden">
       <div className="relative aspect-video">
-        <Skeleton className="w-full h-full" />
+        <Skeleton className="w-full h-full rounded-b-none" />
       </div>
       <CardHeader>
         <Skeleton className="w-4/5 h-5" />
